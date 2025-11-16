@@ -1,0 +1,12 @@
+# Virtual Environment Folders
+venv/
+.env
+
+# Jupyter Notebook Checkpoints
+.ipynb_checkpoints
+
+# Python Caches
+__pycache__/
+
+# Operating System Files (e.g., Mac)
+.DS_Store
