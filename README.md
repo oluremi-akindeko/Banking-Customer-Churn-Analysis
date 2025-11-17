@@ -1,7 +1,9 @@
 # 🏦 Bank Customer Churn Prediction Model
 
 ## Project Overview
-This project focuses on building a machine learning classification model to identify bank customers at high risk of attrition (churn). By analysing key demographic, financial, and product usage data, the goal is to provide the bank's strategy team with actionable insights to inform targeted retention campaigns and improve customer lifetime value.
+This project focuses on building a predictive machine learning classification model to identify bank customers at high risk of attrition (churn). By analysing key demographic, financial, and product usage data, the goal is to provide the bank's strategy team with actionable insights to inform targeted retention campaigns and improve customer lifetime value.
+
+The entire analysis, from data ingestion to model evaluation and feature importance, is contained within a single **Jupyter Notebook**.
 
 ## 🎯 Key Business Questions Addressed
 * What is the baseline customer churn rate?
@@ -11,64 +13,55 @@ This project focuses on building a machine learning classification model to iden
 
 ---
 
+## 📁 Repository Files
+
+| File Name | Description | Purpose |
+| :--- | :--- | :--- |
+| **`README.md`** | This file. | Provides the project overview and instructions. |
+| **`Bank Customer Churn Analysis.ipynb`** | **The main analysis document.** | Contains all code, outputs, visualisations, and markdown commentary. |
+| **`Bank Customer Churn.csv`** | The raw dataset used for the project. | Allows immediate replication of the analysis. |
+| **`.gitignore`** | Git configuration file. | Ensures temporary files (`venv/`, `.ipynb_checkpoints`) are not committed. |
+
+---
+
 ## 🛠️ Technical Stack
-The entire project was developed in a Python environment, utilising the core Data Science stack:
+The project utilised the core Python Data Science stack:
 
 | Tool | Purpose |
 | :--- | :--- |
 | **Python 3** | Core programming language |
-| **Pandas** | Data ingestion and numerical operations |
-| **Matplotlib, Seaborn** | Exploratory Data Analysis (EDA) and data visualisation |
+| **Pandas** | Data ingestion, manipulation, and numerical operations (built upon **NumPy** |
+| **Matplotlib, Seaborn** | Exploratory Data Analysis (EDA) and visualisation (outputs visible in the notebook) |
 | **Scikit-learn** (`sklearn`) | Model building, data splitting, scaling, and evaluation |
-| **VS Code** | Integrated Development Environment (IDE) |
+| **Jupyter Notebook** | Interactive environment for full workflow documentation |
 
 ---
 
-## ⚙️ Methodology & Project Stages
+## 💡 Key Model Insights & Results
 
-### 1. Data Preprocessing & Feature Engineering
-* **Data Cleaning:** Confirmed zero missing values, allowing immediate progression to feature engineering.
-* **Categorical Encoding:** Applied **One-Hot Encoding** to nominal features (`Country`, `Gender`) to prepare data for the machine learning algorithm.
-* **Data Splitting:** Divided the data into 80% Training and 20% Testing sets, using **Stratification** to ensure balanced churn distribution across both sets.
-* **Feature Scaling:** Applied **StandardScaler** to numerical features (`Age`, `Balance`, `Estimated_Salary`) to normalise data magnitude, which is crucial for the Logistic Regression model.
+### Model Performance (Logistic Regression)
+* **ROC AUC Score:** **0.7748**
+* **Recall (Churn Class):** **~18.67%** (Identified as the key area for future improvement using advanced models like XGBoost/Random Forest).
 
-### 2. Exploratory Data Analysis (EDA)
-* The baseline churn rate was calculated at **~20.37%**.
-* **Key Findings:**
-    * **Geographic Risk:** Customers in **Germany** showed the highest churn rate ($\mathbf{\approx 32.44\%}$).
-    * **Demographic Risk:** **Female customers** and customers in the **40-60 age bracket** were identified as having significantly higher flight risk.
-
-### 3. Model Training & Evaluation
-* **Model:** A **Logistic Regression** classifier was trained as the initial benchmark model.
-* **Performance:**
-    * **ROC AUC Score:** **0.7748** (A good indicator of the model's ability to distinguish between churners and non-churners).
-    * **Recall (Churn Class):** The model achieved a Recall of **~18.67%**, indicating that while predictive, the model needs further tuning (e.g., using different classification thresholds or advanced models like XGBoost/Random Forest) to increase its effectiveness in identifying high-risk customers for intervention.
-
----
-
-## 💡 Key Model Insights (Feature Importance)
-Coefficients extracted from the trained Logistic Regression model reveal the strongest risk factors driving churn:
-
-1.  **Inactive Member Status:** The single greatest predictor of churn.
-2.  **Geography (Germany):** Confirmed as a massive regional risk factor.
+### Top 3 Churn Drivers (Feature Importance)
+1.  **Inactive Member Status:** The single greatest predictor, making inactive customers the highest priority for re-engagement.
+2.  **Geography (Germany):** A major regional risk factor, requiring localised attention.
 3.  **Customer Age:** Older customers show a strong positive correlation with the likelihood of churn.
 
 ---
 
 ## 🚀 How to Run the Project
+To fully reproduce the analysis, you need to run the `Bank Customer Churn Analysis.ipynb` notebook cell-by-cell.
+
 1.  **Clone the Repository:**
     ```bash
-    git clone [YOUR_REPOSITORY_LINK]
+    git clone (https://github.com/oluremi-akindeko/Banking-Customer-Churn-Analysis)
     ```
 2.  **Install Dependencies:**
     ```bash
-    pip install pandas numpy scikit-learn matplotlib seaborn
+    pip install pandas scikit-learn matplotlib seaborn
     ```
-3.  **Run the Script:**
-    ```bash
-    python analyzer.py
-    ```
-    *Note: Ensure the `Bank Customer Churn.csv` file is in the root directory.*
+3.  **Launch the Notebook:** Open the `Bank Customer Churn Analysis.ipynb` file in VS Code or Jupyter Lab/Notebook environment and run the cells sequentially.
 
 ---
 
